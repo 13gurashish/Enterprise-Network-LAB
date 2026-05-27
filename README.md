@@ -51,6 +51,24 @@ What I Learned
 - How Router on a Stick enables inter-VLAN routing
 - How to verify network configs with show commands
 
+ ACL Security Configuration
+
+Security Policy
+| Source | Destination | Action |
+|--------|-------------|--------|
+| HR (VLAN 10) | Finance (VLAN 20) | DENY |
+| Sales (VLAN 30) | Finance (VLAN 20) | DENY |
+| Any | Any | PERMIT |
+
+ ACL Configuration
+access-list 100 deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+access-list 100 deny ip 192.168.30.0 0.0.0.255 192.168.20.0 0.0.0.255
+access-list 100 permit ip any any
+
+ACL Verification = Access List Screenshot
+
+HR Blocked From Finance Verification = HR ping Finance Timeout Screenshot 
+
 Tools Used
 - Cisco Packet Tracer
 - draw.io (network diagram)
